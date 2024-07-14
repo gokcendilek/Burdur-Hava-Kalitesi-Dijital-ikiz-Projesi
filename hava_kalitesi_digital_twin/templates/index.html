@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burdur Hava Kalitesi</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <style>
+        #map { height: 600px; }
+    </style>
+</head>
+<body>
+    <h1>Burdur Hava Kalitesi Haritası</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script>
+        var map = L.map('map').setView([37.7205, 30.2909], 10);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        var markerCluster = L.markerClusterGroup();
+        map.addLayer(markerCluster);
+
+        var quality_mapping = {
+            0: 'İyi',
+            1: 'Orta',
+            2: 'Hassas',
+            3: 'Sağlıksız',
+            4: 'Kötü',
+            5: 'Tehlikeli'
+        };
+
+        function updateMap(data) {
+            markerCluster.clearLayers();
+            data.forEach(function(item) {
+                var coords = item['Koordinatlar'];
+                var kalite = item['Genel_Kalite_Tahmini'];
+                var color;
+                switch (kalite) {
+                    case 0:
+                        color = 'green';
+                        break;
+                    case 1:
+                        color = 'yellow';
+                        break;
+                    case 2:
+                        color = 'orange';
+                        break;
+                    case 3:
+                        color = 'red';
+                        break;
+                    case 4:
+                        color = 'purple';
+                        break;
+                    case 5:
+                        color = 'darkred';
+                        break;
+                }
+
+                var marker = L.marker([coords[0], coords[1]], {
+                    icon: L.divIcon({
+                        className: 'custom-div-icon',
+                        html: "<div style='background-color:"+color+";width:20px;height:20px;border-radius:50%;'></div>",
+                        iconSize: [20, 20]
+                    })
+                }).bindPopup(
+                    `<b>İlçe:</b> ${item['İlçe']}<br>
+                    <b>Hava Kalitesi:</b> ${quality_mapping[kalite]}<br>
+                    <b>PM10 (µg/m³):</b> ${item['PM10 (µg/m³)']}<br>
+                    <b>PM2.5 (µg/m³):</b> ${item['PM2.5 (µg/m³)']}<br>
+                    <b>SO2 (µg/m³):</b> ${item['SO2 (µg/m³)']}<br>
+                    <b>CO (µg/m³):</b> ${item['CO (µg/m³)']}<br>
+                    <b>NO2 (µg/m³):</b> ${item['NO2 (µg/m³)']}<br>
+                    <b>NOX (µg/m³):</b> ${item['NOX (µg/m³)']}<br>
+                    <b>NO (µg/m³):</b> ${item['NO (µg/m³)']}<br>
+                    <b>O3 (µg/m³):</b> ${item['O3 (µg/m³)']}<br>
+                    <b>Tarih Saat:</b> ${item['Tarih_Saat']}`
+                );
+                markerCluster.addLayer(marker);
+            });
+        }
+
+        function fetchData() {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => updateMap(data))
+                .catch(error => console.log(error));
+        }
+
+        setInterval(fetchData, 15000);
+    </script>
+</body>
+</html>
