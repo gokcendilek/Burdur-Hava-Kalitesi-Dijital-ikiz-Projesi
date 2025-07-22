@@ -1,10 +1,10 @@
-# 🌫️ Burdur Hava Kalitesi Dijital İkiz Projesi
+#  Burdur Hava Kalitesi Dijital İkiz Projesi
 
 Bu proje, **Burdur ili ve ilçelerinin (Merkez, Altınyayla, Bucak, Çavdır, Çeltikçi)** hava kirliliği seviyelerini **gerçek zamanlı olarak izlemek, analiz etmek ve görselleştirmek** amacıyla geliştirilmiştir. Python kullanılarak geliştirilmiş bu sistem, hava kalitesi verilerini dinamik olarak işler ve **harita üzerinde renklerle anlık olarak gösterir.**
 
 ---
 
-## 🎯 Amaç
+##  Amaç
 
 - Burdur ve ilçelerinde hava kirliliği seviyelerini sürekli olarak izlemek  
 - Gerçek zamanlı verileri analiz ederek vatandaşlara ve yöneticilere bilgi sunmak  
@@ -13,7 +13,7 @@ Bu proje, **Burdur ili ve ilçelerinin (Merkez, Altınyayla, Bucak, Çavdır, Ç
 
 ---
 
-## 🛠️ Kullanılan Teknolojiler
+##  Kullanılan Teknolojiler
 
 - Python  
 - `folium` veya `plotly` (Harita görselleştirmeleri için)  
@@ -23,10 +23,10 @@ Bu proje, **Burdur ili ve ilçelerinin (Merkez, Altınyayla, Bucak, Çavdır, Ç
 
 ---
 
-## 📈 Özellikler
-- Önceki yıllardaki Burdur hava kalitesi verileri ile model eğitildi.
-- ✅ Her 5 saniyede bir verilerin güncellenmesi  
-- 🗺️ Burdur haritası üzerinde ilçelerin hava kalitesi seviyelerinin renkle gösterimi  
+##  Özellikler
+-  Önceki yıllardaki Burdur hava kalitesi verileri ile model eğitildi.
+-  Her 5 saniyede bir verilerin güncellenmesi  
+-  Burdur haritası üzerinde ilçelerin hava kalitesi seviyelerinin eğitilmiş modele göre değerlendirilerek renkle gösterimi  
 - 🔴 Kötü hava kalitesi için kırmızı, 🟡 orta için sarı, 🟢 iyi için yeşil gibi renk kodlamaları  
 - 📊 İlçelere göre detaylı PM2.5, PM10, CO, NO2 gibi kirlilik parametreleri
 
@@ -44,7 +44,7 @@ Her ilçe için anlık hava kalitesi hesaplanır ve harita üzerinde aşağıdak
 
 ---
 
-## 🚀 Başlatmak için
+##  Başlatmak için
 
 ### 1. Depoyu klonlayın:
 ```bash
