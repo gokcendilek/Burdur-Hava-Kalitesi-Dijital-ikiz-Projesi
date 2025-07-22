@@ -18,8 +18,8 @@ Bu proje, **Burdur ili ve ilçelerinin (Merkez, Altınyayla, Bucak, Çavdır, Ç
 - Python  
 - `folium` veya `plotly` (Harita görselleştirmeleri için)  
 - `pandas`, `numpy` (Veri işleme için)  
-- `sqlite` veya `csv` (Veri kaydı için)  
-- `tkinter` veya Flask (opsiyonel kullanıcı arayüzü veya web arayüzü)
+- `sqlite` ve `csv` (Veri kaydı için)  
+-  Flask (opsiyonel kullanıcı arayüzü veya web arayüzü)
 
 ---
 
